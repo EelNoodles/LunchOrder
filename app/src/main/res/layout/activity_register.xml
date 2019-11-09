@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/comlogo"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@mipmap/comlogo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/registernameText"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/comlogo"
+        android:layout_centerHorizontal="true"
+        android:text="帳號："
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />/>
+
+    <EditText
+        android:id="@+id/registername"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/registernameText"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的名字"
+        android:inputType="text"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/registernumberText"
+        android:layout_below="@id/registername"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="70dp"
+        android:layout_centerHorizontal="true"
+        android:text="密碼："
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />/>
+
+    <EditText
+        android:id="@+id/registernumber"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/registernumberText"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的座號"
+        android:inputType="number"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/registerbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registernumber"
+        android:layout_alignEnd="@id/registernumber"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="註冊"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack" />
+
+
+</RelativeLayout>

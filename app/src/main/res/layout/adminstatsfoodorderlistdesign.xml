@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/adminstatsfoodorderlistdesignimageview"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/menu"/>
+
+    <TextView
+        android:id="@+id/adminstatsfoodorderlistdesignname"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@+id/adminstatsfoodorderlistdesignimageview"
+        android:layout_toLeftOf="@+id/adminstatsfoodorderlistdesignprice"
+        android:layout_alignTop="@+id/adminstatsfoodorderlistdesignimageview"
+        android:gravity="center"
+        android:text="edaweed"
+        android:textSize="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/colorWhite" />
+
+
+    <TextView
+        android:id="@+id/adminstatsfoodorderlistdesignprice"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:text="edawedwedwed"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="@color/colorWhite"
+        android:layout_marginEnd="20dp"
+        android:layout_alignTop="@+id/adminstatsfoodorderlistdesignimageview"/>
+
+    <TextView
+        android:id="@+id/adminstatsfoodorderlistdesigntotalprice"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:text="edadwed"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="@color/colorWhite"
+        android:layout_below="@+id/adminstatsfoodorderlistdesignprice"
+        android:layout_marginEnd="20dp" />
+
+
+</RelativeLayout>

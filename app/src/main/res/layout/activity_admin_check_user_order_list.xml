@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCheckUserOrderList"
+    android:background="@mipmap/background">
+
+    <RelativeLayout
+        android:id="@+id/AdminCheckOrderListTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/AdminCheckOrderListTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:text="訂單列表"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/AdminCheckOrderListDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@id/AdminCheckOrderListTitle"
+            android:text="請進行點餐（點右方即可回菜單）"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/AdminCheckorderlistbacksetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AdminCheckorderlistrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/AdminCheckOrderListTopBar">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

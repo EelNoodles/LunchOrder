@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.lunchorder">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logoicon"
+        android:label="310 登入系統"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon,android:label">
+        <activity android:name=".AdminRemoveDrink"></activity>
+        <activity android:name=".AdminRemoveFood" />
+        <activity android:name=".CancelHomeWork" />
+        <activity android:name=".HomeWorkFin" />
+        <activity android:name=".HomeWork" />
+        <activity android:name=".LogInHomeWork" />
+        <activity android:name=".AdminRollCallDateSelect" />
+        <activity android:name=".AdminRollCallActivity" />
+        <activity android:name=".LeaveActivity" />
+        <activity android:name=".AnnouncementSettingActivity" />
+        <activity android:name=".AdminCheckUserOrderList" />
+        <activity android:name=".AdminStatsDrinkOrderListActivity" />
+        <activity android:name=".AdminStatsFoodOrderListActivity" />
+        <activity android:name=".AdminStatsDateSelectActivity" />
+        <activity
+            android:name=".AdminStatsLobby"
+            android:label="@string/title_activity_admin_stats_lobby"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DrinkDetailActivity" />
+        <activity
+            android:name=".SettingDrinkActivity"
+            android:label="@string/title_activity_setting_drink"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".OrderListActivity" />
+        <activity android:name=".FoodDetailsActivity" />
+        <activity android:name=".SelectDrinkStoreActivity" />
+        <activity android:name=".SelectFoodStoreActivity" />
+        <activity android:name=".AdminDateMenuActivity" />
+        <activity android:name=".AdminSelectActivity" />
+        <activity android:name=".OrderDateSelectActivity" />
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LobbyActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".MyFirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

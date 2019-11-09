@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CancelHomeWork"
+    android:background="@mipmap/background">
+
+    <ImageView
+        android:id="@+id/comlogo"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/comlogo"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/CancelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comlogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:hint="請輸入功課標題。"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/CancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CancelTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="確定刪除"/>
+
+</RelativeLayout>

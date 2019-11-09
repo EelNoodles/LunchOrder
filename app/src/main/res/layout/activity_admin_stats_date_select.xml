@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".AdminStatsDateSelectActivity">
+
+    <TextView
+        android:id="@+id/AdminDateSelectText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:text="訂餐日期"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/AdminDateSelectEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/AdminDateSelectText"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:onClick="datePicker"
+        android:hint="點我選擇日期"
+        android:textColorHint="@color/colorWhite"
+        android:editable="false"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/AdminUserSelectDateButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/AdminDateSelectEditText"
+        android:text="選擇"
+        android:textSize="15dp"
+        android:layout_alignEnd="@+id/AdminDateSelectEditText"/>
+
+    <Button
+        android:id="@+id/AdminUserSelectDateLogoutButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/AdminDateSelectEditText"
+        android:text="登出"
+        android:layout_alignStart="@+id/AdminDateSelectEditText" />
+
+</RelativeLayout>

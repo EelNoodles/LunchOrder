@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".LobbyActivity">
+
+    <ImageView
+        android:id="@+id/DisplayImageFoodView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/tray"/>
+
+    <TextView
+        android:id="@+id/DisplayFoodName"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@+id/DisplayImageFoodView"
+        android:layout_toLeftOf="@id/DisplayFoodPrice"
+        android:layout_alignTop="@+id/DisplayImageFoodView"
+        android:gravity="center"
+        android:text="edawedwedwed"
+        android:textSize="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/DisplayFoodPrice"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/DisplayFoodName"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:text="30"
+        android:textSize="18dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/colorWhite"/>
+
+</RelativeLayout>

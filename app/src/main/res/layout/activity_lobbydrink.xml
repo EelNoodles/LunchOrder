@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/DisplayImageDrinkView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/drink"/>
+
+    <TextView
+        android:id="@+id/DisplayDrinkName"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@+id/DisplayImageDrinkView"
+        android:layout_toLeftOf="@id/DisplayDrinkPrice"
+        android:layout_alignTop="@+id/DisplayImageDrinkView"
+        android:gravity="center"
+        android:text="edawedwedwed"
+        android:textSize="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/DisplayDrinkPrice"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/DisplayDrinkName"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:text="30"
+        android:textSize="18dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/colorWhite"/>
+
+</RelativeLayout>

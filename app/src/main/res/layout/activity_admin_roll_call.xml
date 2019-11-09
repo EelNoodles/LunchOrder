@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminRollCallActivity"
+    android:background="@mipmap/background">
+
+    <RelativeLayout
+        android:id="@+id/AdminRollCallTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/AdminRollCallTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:text="點名列表"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/AdminRollLastUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/AdminRollCallTitle"
+            android:text="最近更新："
+            android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/AdminRollCallBackMainActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp" />
+
+        <ImageView
+            android:id="@+id/AdminRollCallChooseWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/update"
+            android:layout_toLeftOf="@+id/AdminRollCallBackMainActivity"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AdminRollCallRecycleView"
+        android:layout_below="@+id/AdminRollCallTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

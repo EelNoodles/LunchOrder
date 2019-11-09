@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/LeaveResultBar"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true">>
+
+        <TextView
+            android:id="@+id/LeaveResulttitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="23dp"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"/>
+
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/LeaveResultmessage"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/LeaveResultBar"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:textSize="17dp"
+        android:textColor="@color/colorBlack"/>
+
+</RelativeLayout>

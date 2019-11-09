@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodDetailsActivity"
+    android:background="@mipmap/background">
+
+    <ImageView
+        android:id="@+id/comlogo"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@mipmap/comlogo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/FoodDetailsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comlogo"
+        android:layout_marginTop="20dp"
+        android:text="你的餐點名稱"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/FoodDetailsPrice"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FoodDetailsName"
+        android:text="你的餐點名稱"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/FoodDetailsCount"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FoodDetailsPrice"
+        android:text="請選擇數量"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
+    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        android:id="@+id/FoodDetailsElegantNumberButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FoodDetailsCount"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        app:textSize="10dp">
+
+    </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+
+    <Button
+        android:id="@+id/AddToOrderList"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/FoodDetailsElegantNumberButton"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:text="確認訂餐"
+        android:textSize="20dp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminSelectActivity"
+    android:background="@mipmap/background">
+
+    <ImageView
+        android:id="@+id/comlogo"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@mipmap/comlogo"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/AdminSelcetButton_Add_Food"
+        android:layout_below="@+id/Logouticon"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="新增菜單"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/AdminSelcetButton_Date"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="安排菜單"
+        android:layout_below="@+id/AdminSelcetButton_Add_Food"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/registerbutton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/AdminSelcetButton_Date"
+        android:layout_centerHorizontal="true"
+        android:text="帳號註冊"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/adminstats"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/registerbutton"
+        android:layout_centerHorizontal="true"
+        android:text="餐點統計"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/Announcement"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/adminstats"
+        android:layout_centerHorizontal="true"
+        android:text="公告設置"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorBlack" />
+
+    <ImageView
+        android:id="@+id/Logouticon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logout"
+        android:layout_below="@id/comlogo"
+        android:layout_marginStart="100dp"/>
+
+    <ImageView
+        android:id="@+id/RollCallicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dateselect"
+        android:layout_below="@id/comlogo"
+        android:layout_marginEnd="100dp"
+        android:layout_alignParentEnd="true"/>
+
+    <ImageView
+        android:id="@+id/SetHomeWorkIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/paper"
+        android:layout_below="@id/comlogo"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

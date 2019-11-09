@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_adminlogout"
+            android:icon="@drawable/logout"
+            android:title="回到登入畫面" />
+
+        <item
+            android:id="@+id/nav_admindateselect"
+            android:icon="@drawable/dateselect"
+            android:title="回到日期選擇畫面" />
+        <item
+            android:id="@+id/nav_adminorderfoodlist"
+            android:icon="@drawable/orderlist"
+            android:title="前往午餐總表" />
+
+        <item
+            android:id="@+id/nav_drinkorderdrinklist"
+            android:icon="@drawable/orderlist"
+            android:title="前往飲料總表" />
+    </group>
+
+</menu>

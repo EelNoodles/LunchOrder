@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderDateSelectActivity"
+    android:background="@mipmap/background">
+
+    <TextView
+        android:id="@+id/DateSelectText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:text="訂餐日期"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/DateSelectEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/DateSelectText"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:onClick="datePicker"
+        android:hint="點我選擇日期"
+        android:textColorHint="@color/colorWhite"
+        android:editable="false"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/UserSelectDateButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/DateSelectEditText"
+        android:text="選擇"
+        android:textSize="15dp"
+        android:layout_alignEnd="@+id/DateSelectEditText"/>
+
+    <Button
+        android:id="@+id/UserSelectDateLogoutButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/DateSelectEditText"
+        android:text="離開"
+        android:layout_alignStart="@+id/DateSelectEditText" />
+
+</RelativeLayout>

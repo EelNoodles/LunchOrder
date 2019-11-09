@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/comlogo"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/comlogo"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/loginnameText"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/comlogo"
+        android:text="帳號："
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />/>
+
+    <EditText
+        android:id="@+id/loginname"
+        android:layout_below="@id/loginnameText"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的名字"
+        android:inputType="text"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loginnumberText"
+        android:layout_below="@id/loginname"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="70dp"
+        android:layout_centerHorizontal="true"
+        android:text="密碼："
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />/>
+
+    <EditText
+        android:id="@+id/loginnumber"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/loginnumberText"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的座號"
+        android:inputType="number"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/loginCheckBox"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
+        style="@style/Material.Drawable.LinearProgress"
+        android:text="記住我的帳號與密碼"
+        android:gravity="center"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/loginnumber"
+        android:layout_below="@id/loginnumber" />
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginCheckBox"
+        android:layout_alignEnd="@+id/loginnumber"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="登入"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack" />
+
+    <TextView
+        android:id="@+id/Version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="13dp"
+        android:textColor="@color/colorWhite"
+        android:text="Version：2.2 / Developer：Sam"/>
+
+
+</RelativeLayout>
