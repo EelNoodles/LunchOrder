@@ -115,7 +115,7 @@
         android:layout_alignParentBottom="true"
         android:textSize="13dp"
         android:textColor="@color/colorWhite"
-        android:text="Version：2.2 / Developer：Sam"/>
+        android:text="Version：2.3（Beta） / Developer：Sam"/>
 
 
 </RelativeLayout>
