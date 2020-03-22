@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/loginclass"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的班級"
+        android:inputType="number"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorBlack"
+        android:layout_marginTop="15dp"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/loginname"
+        android:layout_below="@id/loginclass"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的名字"
+        android:inputType="text"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorBlack"
+        android:layout_marginTop="15dp"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/loginnumber"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/loginname"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的座號"
+        android:inputType="number"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorBlack"
+        android:layout_marginTop="15dp"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/loginCheckBox"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
+        style="@style/Material.Drawable.LinearProgress"
+        android:text="記住我的帳號與密碼"
+        android:gravity="center"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/loginnumber"
+        android:layout_below="@id/loginnumber" />
+
+</RelativeLayout>

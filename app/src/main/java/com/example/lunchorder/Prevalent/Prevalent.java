@@ -12,10 +12,12 @@ public class Prevalent {
 
     public static final String UserName = "UserName";
     public static final String UserNumber = "UserNumber";
+    public static final String UserClass = "UserClass";
     public static final String TotalPrice = "TotalPrice";
     public static final String FoodStore = "FoodStore";
     public static final String DrinkStore = "DrinkStore";
     public static final String Date = "Date";
     public static final String AdminDate = "AdminDate";
+    public static final String AdminClass = "AdminClass";
 
 }

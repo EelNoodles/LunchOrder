@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lunchorder.Model.Announcement;
+import com.example.lunchorder.Model.Leave;
 import com.example.lunchorder.Model.Users;
 import com.example.lunchorder.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +40,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,13 +51,10 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button LoginButton;
-    private TextView Version;
-    private EditText InputName, InputNumber;
+    private TextView ShowName, MailText, LoginText, AdminText, OrderButtom, RollCallButtom;
     private ProgressDialog loadingBar;
     private String User = "Users";
     private CheckBox CheckBoxRemember;
-    private ImageView comlogo;
 
     private static final String TAG = "MainActivity";
 
@@ -64,46 +64,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LoginButton = (Button) findViewById(R.id.loginbutton);
-        InputName = (EditText) findViewById(R.id.loginname);
-        InputNumber = (EditText) findViewById(R.id.loginnumber);
-        Version = (TextView) findViewById(R.id.Version);
         loadingBar = new ProgressDialog(this);
-        comlogo = (ImageView) findViewById(R.id.comlogo);
+        ShowName = (TextView) findViewById(R.id.ShowName);
+        MailText = (TextView) findViewById(R.id.MailText);
+        AdminText = (TextView) findViewById(R.id.AdminText);
+        LoginText = (TextView) findViewById(R.id.LoginText);
+        RollCallButtom = (TextView) findViewById(R.id.RollCallButtom);
+        OrderButtom = (TextView) findViewById(R.id.OrderButtom);
 
-        CheckBoxRemember = (CheckBox) findViewById(R.id.loginCheckBox);
         Paper.init(this);
 
-        Announcement();
+        final String Name = Paper.book().read(Prevalent.UserName);
+        String Number = Paper.book().read(Prevalent.UserNumber);
+        String UserClass = Paper.book().read(Prevalent.UserClass);
 
-        final String UserName = Paper.book().read(Prevalent.UserName);
-        String UserNumber = Paper.book().read(Prevalent.UserNumber);
+        if (Name !=null && Number !=null && UserClass !=null){
 
+            if (!TextUtils.isEmpty(Name) && !TextUtils.isEmpty(Number) && !TextUtils.isEmpty(UserClass)){
 
-        if (UserName !=null && UserNumber !=null){
+                Toast.makeText(MainActivity.this, "登入記住帳號。", Toast.LENGTH_SHORT).show();
 
-            if (!TextUtils.isEmpty(UserName) && !TextUtils.isEmpty(UserNumber)){
-
-
-                        Toast.makeText(MainActivity.this, "登入記住帳號。", Toast.LENGTH_SHORT).show();
-
-                        InputName.setText(UserName);
-                        InputNumber.setText(UserNumber);
-
-                    }
-
+                RememberLogin(Name, Number, UserClass);
 
             }
 
-        LoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        }
 
-                LoginUser();
-            }
-        });
-
-        comlogo.setOnClickListener(new View.OnClickListener() {
+        MailText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -112,21 +99,71 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Version.setOnClickListener(new View.OnClickListener() {
+        OrderButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(Paper.book().read("Admin") != null ){
+                Intent intent = new Intent(MainActivity.this, OrderDateSelectActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        RollCallButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, LeaveActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        LoginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if(Paper.book().read(Prevalent.UserName) != null){
+
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("提醒")
+                            .setMessage("你目前正處在登入狀態中").setPositiveButton("登出", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Paper.book().destroy();
+                            Toast.makeText(MainActivity.this, "成功登出。", Toast.LENGTH_SHORT).show();
+
+                            ShowName.setText("你好！");
+
+                        }
+                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    }).show();
+
+                }else{
+
+                    LoginAlertDialog();
+
+                }
+            }
+        });
+
+        AdminText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(Paper.book().read("AdminPassword") != null ){
 
                     Intent intent = new Intent(MainActivity.this, AdminSelectActivity.class);
                     startActivity(intent);
 
                     Toast.makeText(MainActivity.this, "管理員成功登入。", Toast.LENGTH_SHORT).show();
 
-                }else if(Paper.book().read("RollCall") != null){
-
-                    Intent intent = new Intent(MainActivity.this, AdminRollCallDateSelect.class);
-                    startActivity(intent);
 
                 }else{
 
@@ -139,46 +176,27 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
-                                    EditText editText = (EditText) item.findViewById(R.id.adminloginpassword);
-                                    String name = editText.getText().toString();
-                                    if(TextUtils.isEmpty(name)){
+                                    EditText AdminPassword = (EditText) item.findViewById(R.id.adminloginpassword);
+                                    EditText AdminClass = (EditText) item.findViewById(R.id.adminloginclass);
+                                    String adminpassword = AdminPassword.getText().toString();
+                                    String adminclass = AdminClass.getText().toString();
+                                    if(TextUtils.isEmpty(adminpassword)){
 
                                         Toast.makeText(MainActivity.this, "請輸入認證碼。", Toast.LENGTH_SHORT).show();
 
                                     } else {
 
-                                        if(name.equals("06180618")){
+                                        if(adminpassword.equals("PTHS")){
 
                                             Intent intent = new Intent(MainActivity.this, AdminSelectActivity.class);
                                             startActivity(intent);
 
                                             Toast.makeText(MainActivity.this, "管理員成功登入。", Toast.LENGTH_SHORT).show();
 
-                                            Paper.book().write("Admin", "06180618");
+                                            Paper.book().write("AdminPassword", "PTHS");
+                                            Paper.book().write("AdminClass", adminclass);
 
 
-                                        }else {
-
-                                            if(name.equals("31022") || name.equals("31042")){
-
-                                                Intent intent = new Intent(MainActivity.this, AdminRollCallDateSelect.class);
-                                                startActivity(intent);
-
-                                                Paper.book().write("RollCall", "3102232");
-
-                                            }else{
-
-                                                if(name.equals("310")) {
-
-                                                    Intent intent = new Intent(MainActivity.this, LogInHomeWork.class);
-                                                    startActivity(intent);
-
-                                                }else {
-
-                                                    Toast.makeText(MainActivity.this, "認證碼錯誤。", Toast.LENGTH_SHORT).show();
-
-                                                }
-                                            }
                                         }
                                     }
                                 }
@@ -205,30 +223,60 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void LoginUser(){
+    private void LoginAlertDialog(){
 
-        String Name = InputName.getText().toString();
-        String Number = InputNumber.getText().toString();
+        final View item = LayoutInflater.from(MainActivity.this).inflate(R.layout.userlogindesign, null);
 
-        if (TextUtils.isEmpty(Name)){
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("學生登入")
+                .setView(item).setPositiveButton("登入", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-            Toast.makeText(this, "請輸入姓名。", Toast.LENGTH_SHORT).show();
+                CheckBoxRemember = (CheckBox) item.findViewById(R.id.loginCheckBox);
+
+                EditText InputName = (EditText) item.findViewById(R.id.loginname);
+                EditText InputNumber = (EditText) item.findViewById(R.id.loginnumber);
+                EditText InputClass = (EditText) item.findViewById(R.id.loginclass);
+
+                String Name = InputName.getText().toString();
+                String Number = InputNumber.getText().toString();
+                String UserClass = InputClass.getText().toString();
+
+                LoginUser(Name, Number, UserClass);
+
+
+            }
+        }).show();
+
+    }
+
+    private void LoginUser(String Name, String Number, String UserClass){
+
+
+        if (TextUtils.isEmpty(UserClass)){
+
+            Toast.makeText(this, "請輸入班級。", Toast.LENGTH_SHORT).show();
 
         }else if (TextUtils.isEmpty(Number)){
 
             Toast.makeText(this, "請輸入座號。", Toast.LENGTH_SHORT).show();
 
+        }else if (TextUtils.isEmpty(Name)){
+
+            Toast.makeText(this, "請輸入姓名。", Toast.LENGTH_SHORT).show();
+
         }else{
-            loadingBar.setTitle("正在登入您的帳號...");
+            loadingBar.setTitle("正在登入您的帳號...  ☕️");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            AllowLogin(Name, Number);
+            AllowLogin(Name, Number, UserClass);
         }
 
     }
 
-    private void AllowLogin(final String Name, final String Number){
+    private void AllowLogin(final String Name, final String Number, final String UserClass){
 
 
         final DatabaseReference RootRef;
@@ -238,16 +286,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Users userdata = dataSnapshot.child(User).child(Number).getValue(Users.class);
+                Users userdata = dataSnapshot.child(User).child(UserClass).child(Number).getValue(Users.class);
 
-                if (userdata.getNumber() !=null && userdata.getName() !=null){
+                if (userdata.getNumber() !=null && userdata.getName() !=null && userdata.getUserClass() !=null){
 
-                    if (userdata.getNumber().equals(Number) && userdata.getName().equals(Name)){
+                    if (userdata.getNumber().equals(Number) && userdata.getName().equals(Name) && userdata.getUserClass().equals(UserClass)) {
 
                             if (CheckBoxRemember.isChecked()) {
 
                                 Paper.book().write(Prevalent.UserName, Name);
                                 Paper.book().write(Prevalent.UserNumber, Number);
+                                Paper.book().write(Prevalent.UserClass, UserClass);
 
                             }
 
@@ -256,14 +305,42 @@ public class MainActivity extends AppCompatActivity {
 
                             Prevalent.RightOnlineUser = userdata;
 
-                            choise();
+                            ShowName.setText("你好， " + Prevalent.RightOnlineUser.getName() + "  \uD83D\uDE0B " + "（ " + Prevalent.RightOnlineUser.getUserClass() + " / " + Prevalent.RightOnlineUser.getNumber() + " ）" );
 
                         }else{
 
                         Toast.makeText(MainActivity.this, "您的帳號或是密碼可能有誤，請重新輸入。", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
+
                     }
                 }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void RememberLogin(final String Name, final String Number, final String UserClass){
+
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Users userdata = dataSnapshot.child(User).child(UserClass).child(Number).getValue(Users.class);
+
+                        Toast.makeText(MainActivity.this, "成功登入。", Toast.LENGTH_SHORT).show();
+
+                        Prevalent.RightOnlineUser = userdata;
+
+                        ShowName.setText("你好， " + Prevalent.RightOnlineUser.getName() + "  \uD83D\uDE0B " + "（ " + Prevalent.RightOnlineUser.getUserClass() + " / " + Prevalent.RightOnlineUser.getNumber() + " ）" );
 
             }
 
@@ -336,48 +413,4 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    private void choise(){
-
-        CharSequence options[] = new CharSequence[]{
-
-                "前往訂餐頁面。",
-                "前往自習請假頁面。",
-                "前往功課列表。"
-
-
-        };
-
-        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("請選擇欲前往選單");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                if(i == 0){
-
-                    Intent intent = new Intent(MainActivity.this, OrderDateSelectActivity.class);
-                    startActivity(intent);
-
-                }
-
-                if(i == 1){
-
-                    Intent intent = new Intent(MainActivity.this, LeaveActivity.class);
-                    startActivity(intent);
-
-                }
-                if(i == 2){
-
-                    Intent intent = new Intent(MainActivity.this, HomeWork.class);
-                    startActivity(intent);
-
-                }
-            }
-        });
-
-        builder.show();
-
-    }
-
 }

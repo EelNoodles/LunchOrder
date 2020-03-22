@@ -59,6 +59,8 @@ public class  AdminRollCallActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private String Date = "";
 
+    private String AdminClass = Paper.book().read("AdminClass").toString();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +68,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
 
         Date = getIntent().getStringExtra("Date");
 
-        UserRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(Date);
+        UserRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(AdminClass).child(Date);
 
         recyclerview = findViewById(R.id.AdminRollCallRecycleView);
         recyclerview.setHasFixedSize(true);
@@ -87,7 +89,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                LastUpdateTime leave = dataSnapshot.child("Leave").child("LastUpdateTime").child(Date).getValue(LastUpdateTime.class);
+                LastUpdateTime leave = dataSnapshot.child("Leave").child(AdminClass).child("LastUpdateTime").child(Date).getValue(LastUpdateTime.class);
 
                 AdminRollLastUpdate.setText("最新更新：" + leave.getLastUpdateTime());
 
@@ -208,8 +210,8 @@ public class  AdminRollCallActivity extends AppCompatActivity {
 
                         if(i == 7){
 
-                            RootRef.child("Leave").child(Date).removeValue();
-                            RootRef.child("Leave").child("LastUpdateTime").child(Date).removeValue();
+                            RootRef.child("Leave").child(AdminClass).child(Date).removeValue();
+                            RootRef.child("Leave").child(AdminClass).child("LastUpdateTime").child(Date).removeValue();
 
                             Intent intent = new Intent(AdminRollCallActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -307,8 +309,16 @@ public class  AdminRollCallActivity extends AppCompatActivity {
 
                         }
 
-                        int ActualAttendence = 41 - NocomeAttendence - Absence - Late - Leave;
-                        int ExpectedAttendence = 41 - NocomeAttendence - Leave - Late;
+                        int TotalStudentAmount = 0;
+
+                        for (int a = 0; a < count ; a++){
+
+                            TotalStudentAmount = a + 1;
+
+                        }
+
+                        int ActualAttendence = TotalStudentAmount - NocomeAttendence - Absence - Late - Leave;
+                        int ExpectedAttendence = TotalStudentAmount - NocomeAttendence - Leave - Late;
 
                         String SActualAttendence = String.valueOf(ActualAttendence);
                         String SExpectedAttendence = String.valueOf(ExpectedAttendence);
@@ -387,7 +397,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
                     LeaveMap.put("LeaveResult", "出席表單顯示不來。");
                     LeaveMap.put("Status", "✦");
 
-                    RootRef.child("Leave").child(Date).child(sNumber).updateChildren(LeaveMap);
+                    RootRef.child("Leave").child(AdminClass).child(Date).child(sNumber).updateChildren(LeaveMap);
 
                 }
 
@@ -424,7 +434,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
                     LeaveMap.put("LeaveResult", null);
                     LeaveMap.put("Status", null);
 
-                    RootRef.child("Leave").child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Leave").child(AdminClass).child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -490,7 +500,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
                     LeaveMap.put("LeaveResult", null);
                     LeaveMap.put("Status", null);
 
-                    RootRef.child("Leave").child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Leave").child(AdminClass).child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -531,7 +541,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
                     LeaveMap.put("LeaveResult", "點名時未出席且無請假。");
                     LeaveMap.put("Status", "✘  缺席。");
 
-                    RootRef.child("Leave").child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Leave").child(AdminClass).child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -548,7 +558,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
                     LeaveMap.put("LeaveResult", "由點名者修改為請假狀態。");
                     LeaveMap.put("Status", "▲  請假。");
 
-                    RootRef.child("Leave").child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Leave").child(AdminClass).child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -565,7 +575,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
                     LeaveMap.put("LeaveResult", "由點名者修改為晚到狀態。");
                     LeaveMap.put("Status", "✚  晚到。");
 
-                    RootRef.child("Leave").child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Leave").child(AdminClass).child(Date).child(Number).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -596,7 +606,7 @@ public class  AdminRollCallActivity extends AppCompatActivity {
         LastUpdateTime.put("LastUpdateTime", dts);
 
         final DatabaseReference LastUpdateTimeRef;
-        LastUpdateTimeRef = FirebaseDatabase.getInstance().getReference().child("Leave").child("LastUpdateTime").child(Date);
+        LastUpdateTimeRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(AdminClass).child("LastUpdateTime").child(Date);
 
         LastUpdateTimeRef.updateChildren(LastUpdateTime);
 

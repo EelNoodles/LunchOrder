@@ -15,8 +15,7 @@ import io.paperdb.Paper;
 
 public class AdminSelectActivity extends AppCompatActivity {
 
-    private Button AdminSelectDate, AdminSelectAddFood, RegisterButton, AdminStats, Announcement;
-    private ImageView Logo, Logouticon, RollCallicon, SetHomeWorkIcon;
+    private Button AdminSelectDate, AdminSelectAddFood, RegisterButton, AdminStats, Announcement, Logout, RollCall, SetHomeWork;
 
 
     @Override
@@ -29,10 +28,9 @@ public class AdminSelectActivity extends AppCompatActivity {
         RegisterButton = (Button) findViewById(R.id.registerbutton);
         AdminStats = (Button) findViewById(R.id.adminstats);
         Announcement = (Button) findViewById(R.id.Announcement);
-        Logo = (ImageView) findViewById(R.id.comlogo);
-        Logouticon = (ImageView) findViewById(R.id.Logouticon);
-        RollCallicon = (ImageView) findViewById(R.id.RollCallicon);
-        SetHomeWorkIcon = (ImageView) findViewById(R.id.SetHomeWorkIcon);
+        Logout = (Button) findViewById(R.id.Logout);
+        RollCall = (Button) findViewById(R.id.RollCall);
+        SetHomeWork = (Button) findViewById(R.id.SetHomeWork);
 
         AdminSelectAddFood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,29 +82,20 @@ public class AdminSelectActivity extends AppCompatActivity {
             }
         });
 
-        Logo.setOnClickListener(new View.OnClickListener() {
+        Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(AdminSelectActivity.this, MainActivity.class);
                 startActivity(intent);
 
-            }
-        });
-
-        Logouticon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(AdminSelectActivity.this, MainActivity.class);
-                startActivity(intent);
-
-                Paper.book().delete("Admin");
+                Paper.book().delete("AdminPassword");
+                Paper.book().delete("AdminClass");
 
             }
         });
 
-        RollCallicon.setOnClickListener(new View.OnClickListener() {
+        RollCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -116,7 +105,7 @@ public class AdminSelectActivity extends AppCompatActivity {
             }
         });
 
-        SetHomeWorkIcon.setOnClickListener(new View.OnClickListener() {
+        SetHomeWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

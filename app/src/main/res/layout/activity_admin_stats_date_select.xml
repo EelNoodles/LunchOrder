@@ -50,7 +50,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_below="@id/AdminDateSelectEditText"
-        android:text="登出"
+        android:text="離開"
         android:layout_alignStart="@+id/AdminDateSelectEditText" />
 
 </RelativeLayout>

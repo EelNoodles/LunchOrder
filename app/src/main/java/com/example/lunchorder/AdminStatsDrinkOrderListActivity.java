@@ -22,6 +22,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import io.paperdb.Paper;
+
 public class AdminStatsDrinkOrderListActivity extends AppCompatActivity {
 
     private TextView AdminStatsDrinkOrderListTitle, AdminStatsDrinkOrderListPrice;
@@ -31,6 +33,8 @@ public class AdminStatsDrinkOrderListActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private int totalprice = 0;
     private int totalamount = 0;
+
+    private String AdminClass = Paper.book().read("AdminClass").toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class AdminStatsDrinkOrderListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
 
-        AdminStatsDrinkOrderListTitle.setText("午餐訂餐總表" + " ( " + Prevalent.DateFoodStore.getDate() + " )");
+        AdminStatsDrinkOrderListTitle.setText(AdminClass + " 午餐訂餐總表" + " ( " + Prevalent.DateFoodStore.getDate() + " )");
 
         AdminStatsDrinkOrderListBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +70,7 @@ public class AdminStatsDrinkOrderListActivity extends AppCompatActivity {
         final DatabaseReference orderlistRef = FirebaseDatabase.getInstance().getReference().child("OrderList");
 
 
-        final FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("Admin View")
+        final FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("Admin View").child(AdminClass)
                 .child(Prevalent.DateFoodStore.getDate()).child("Drink"), OrderList.class).build();
 
         FirebaseRecyclerAdapter<OrderList, AdminStatsOrderListViewHolder> adapter = new FirebaseRecyclerAdapter<OrderList, AdminStatsOrderListViewHolder>(options) {

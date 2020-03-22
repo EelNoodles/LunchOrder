@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import io.paperdb.Paper;
+
 public class AdminActivity extends AppCompatActivity {
 
     private EditText InputFoodName, InputFoodPrice, InputStoreName;
@@ -36,6 +38,7 @@ public class AdminActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private RadioButton InputFoodCategory, InputDrinkCategory;
 
+    private String AdminClass = Paper.book().read("AdminClass").toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

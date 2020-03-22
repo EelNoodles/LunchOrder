@@ -49,6 +49,8 @@ public class AdminStatsLobby extends AppCompatActivity
     RecyclerView.LayoutManager layoutManager;
     private Toolbar toolbar;
 
+    private String AdminClass = Paper.book().read("AdminClass").toString();
+
     private int admintotalprice = 0;
     private int admintotaluser = 0;
 
@@ -58,7 +60,7 @@ public class AdminStatsLobby extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_stats_lobby);
 
-        AdminStatsRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.DateFoodStore.getDate());
+        AdminStatsRef = FirebaseDatabase.getInstance().getReference().child("Users").child(AdminClass).child(Prevalent.DateFoodStore.getDate());
 
         recyclerview = findViewById(R.id.recycle_adminstatislobby);
         recyclerview.setHasFixedSize(true);
@@ -118,6 +120,7 @@ public class AdminStatsLobby extends AppCompatActivity
                         Intent intent = new Intent(AdminStatsLobby.this, AdminCheckUserOrderList.class);
                         intent.putExtra("AdminCheckUserName", model.getName());
                         intent.putExtra("AdminCheckUserNumber", model.getNumber());
+                        intent.putExtra("AdminCheckUserClass", model.getUserClass());
                         startActivity(intent);
 
                     }

@@ -7,115 +7,152 @@
     android:background="@mipmap/background"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/comlogo"
-        android:layout_width="250dp"
+    <RelativeLayout
+        android:id="@+id/TopBar"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="100dp"
-        android:background="@mipmap/comlogo"
-        android:layout_centerHorizontal="true"/>
+        android:background="@color/colorWhite"
+        android:layout_alignParentTop="true">
 
-    <TextView
-        android:id="@+id/loginnameText"
-        android:layout_width="300dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/comlogo"
-        android:text="帳號："
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorWhite"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />/>
+        <TextView
+            android:id="@+id/ShowName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="你好！ "
+            android:textSize="20dp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold">/
+        </TextView>
 
-    <EditText
-        android:id="@+id/loginname"
-        android:layout_below="@id/loginnameText"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="70dp"
-        android:layout_centerHorizontal="true"
-        android:hint="請輸入您的名字"
-        android:inputType="text"
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorWhite"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/LoignImage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/login"
+            android:layout_below="@id/ShowName"
+            android:layout_marginTop="15dp"
+            android:layout_alignStart="@id/ShowName">/
+        </ImageView>
 
-    <TextView
-        android:id="@+id/loginnumberText"
-        android:layout_below="@id/loginname"
-        android:layout_width="300dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="70dp"
-        android:layout_centerHorizontal="true"
-        android:text="密碼："
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorWhite"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />/>
+        <TextView
+            android:id="@+id/LoginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登入"
+            android:layout_below="@id/ShowName"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/LoignImage"
+            android:layout_marginStart="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold">/
+        </TextView>
 
-    <EditText
-        android:id="@+id/loginnumber"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="70dp"
-        android:layout_below="@id/loginnumberText"
-        android:layout_centerHorizontal="true"
-        android:hint="請輸入您的座號"
-        android:inputType="number"
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorWhite"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/MailImage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/mail"
+            android:layout_below="@id/ShowName"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/LoginText"
+            android:layout_marginStart="20dp">/
+        </ImageView>
 
-    <CheckBox
-        android:id="@+id/loginCheckBox"
-        android:layout_width="170dp"
-        android:layout_height="20dp"
-        style="@style/Material.Drawable.LinearProgress"
-        android:text="記住我的帳號與密碼"
-        android:gravity="center"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:layout_marginTop="10dp"
-        android:layout_alignStart="@+id/loginnumber"
-        android:layout_below="@id/loginnumber" />
+        <TextView
+            android:id="@+id/MailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公告"
+            android:layout_below="@id/ShowName"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/MailImage"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            android:textStyle="bold">/
+        </TextView>
 
-    <Button
-        android:id="@+id/loginbutton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginCheckBox"
-        android:layout_alignEnd="@+id/loginnumber"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="登入"
-        android:textSize="16dp"
-        android:textColor="@color/colorBlack" />
+        <TextView
+            android:id="@+id/AdminText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="管理員端"
+            android:layout_below="@id/ShowName"
+            android:layout_marginTop="15dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp">/
+        </TextView>
 
-    <TextView
-        android:id="@+id/Version"
+        <ImageView
+            android:id="@+id/AdminImage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/console"
+            android:layout_below="@id/ShowName"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@id/AdminText"
+            android:layout_marginEnd="10dp">/
+        </ImageView>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/LunchImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentBottom="true"
-        android:textSize="13dp"
-        android:textColor="@color/colorWhite"
-        android:text="Version：2.3（Beta） / Developer：Sam"/>
+        android:layout_height="170dp"
+        android:layout_below="@id/TopBar"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/lunch"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">/
+    </ImageView>
+
+    <TextView
+        android:id="@+id/OrderButtom"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_alignStart="@id/LunchImage"
+        android:layout_alignBottom="@id/LunchImage"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="訂餐系統"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:gravity="center"
+        android:background="@drawable/buttonshape">/
+    </TextView>
+
+    <ImageView
+        android:id="@+id/RollCallImage"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_below="@id/LunchImage"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/rollcall"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">/
+    </ImageView>
+
+    <TextView
+        android:id="@+id/RollCallButtom"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_alignStart="@id/RollCallImage"
+        android:layout_alignBottom="@id/RollCallImage"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="請假系統"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:gravity="center"
+        android:background="@drawable/buttonshape">/
+    </TextView>
 
 
 </RelativeLayout>

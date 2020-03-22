@@ -104,9 +104,9 @@ public class OrderDateSelectActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                FoodStore dateStore = dataSnapshot.child("DateStore").child(UserDateSclect).getValue(FoodStore.class);
+                FoodStore dateStore = dataSnapshot.child("DateStore").child(Prevalent.RightOnlineUser.getUserClass()).child(UserDateSclect).getValue(FoodStore.class);
 
-                if (dataSnapshot.child("DateStore").child(UserDateSclect).exists()){
+                if (dataSnapshot.child("DateStore").child(Prevalent.RightOnlineUser.getUserClass()).child(UserDateSclect).exists()){
 
                     Prevalent.DateFoodStore = dateStore;
 

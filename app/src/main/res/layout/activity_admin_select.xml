@@ -8,89 +8,105 @@
     android:background="@mipmap/background">
 
     <ImageView
-        android:id="@+id/comlogo"
+        android:id="@+id/Logo"
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:layout_marginTop="50dp"
         android:background="@mipmap/comlogo"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">/
+    </ImageView>
 
     <Button
         android:id="@+id/AdminSelcetButton_Add_Food"
-        android:layout_below="@+id/Logouticon"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="新增菜單"
         android:textSize="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@id/Logo"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp" />
 
     <Button
         android:id="@+id/AdminSelcetButton_Date"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="安排菜單"
         android:layout_below="@+id/AdminSelcetButton_Add_Food"
         android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:id="@+id/registerbutton"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_below="@id/AdminSelcetButton_Date"
-        android:layout_centerHorizontal="true"
         android:text="帳號註冊"
         android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/colorBlack" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/adminstats"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_below="@id/registerbutton"
-        android:layout_centerHorizontal="true"
         android:text="餐點統計"
         android:textSize="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/RollCall"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="點名系統"
+        android:textSize="20dp"
+        android:layout_below="@id/Logo"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="30dp"
-        android:textColor="@color/colorBlack" />
+        android:textColor="@color/colorBlack">/
+    </Button>
+
+    <Button
+        android:id="@+id/SetHomeWork"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/RollCall"
+        android:text="功課系統"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorBlack">/
+    </Button>
 
     <Button
         android:id="@+id/Announcement"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@id/adminstats"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/SetHomeWork"
         android:text="公告設置"
         android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/colorBlack" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorBlack">/
+    </Button>
 
-    <ImageView
-        android:id="@+id/Logouticon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/logout"
-        android:layout_below="@id/comlogo"
-        android:layout_marginStart="100dp"/>
+    <Button
+        android:id="@+id/Logout"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/Announcement"
+        android:text="管理員登出"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorBlack">/
+    </Button>
 
-    <ImageView
-        android:id="@+id/RollCallicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dateselect"
-        android:layout_below="@id/comlogo"
-        android:layout_marginEnd="100dp"
-        android:layout_alignParentEnd="true"/>
-
-    <ImageView
-        android:id="@+id/SetHomeWorkIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/paper"
-        android:layout_below="@id/comlogo"
-        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

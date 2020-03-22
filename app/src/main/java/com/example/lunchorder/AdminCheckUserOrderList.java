@@ -31,6 +31,7 @@ public class AdminCheckUserOrderList extends AppCompatActivity {
 
     private String AdminCheckUserName = "";
     private String AdminCheckUserNumber = "";
+    private String AdminCheckUserClass = "";
     private int totalprice = 0;
     private int totalamount = 0;
 
@@ -41,6 +42,7 @@ public class AdminCheckUserOrderList extends AppCompatActivity {
 
         AdminCheckUserName = getIntent().getStringExtra("AdminCheckUserName");
         AdminCheckUserNumber = getIntent().getStringExtra("AdminCheckUserNumber");
+        AdminCheckUserClass = getIntent().getStringExtra("AdminCheckUserClass");
 
         AdminCheckOrderListTitle = (TextView) findViewById(R.id.AdminCheckOrderListTitle);
         AdminCheckorderlistbacksetting = (ImageView) findViewById(R.id.AdminCheckorderlistbacksetting);
@@ -70,7 +72,7 @@ public class AdminCheckUserOrderList extends AppCompatActivity {
 
         final DatabaseReference orderlistRef = FirebaseDatabase.getInstance().getReference().child("OrderList");
 
-        FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("User View")
+        FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("User View").child(AdminCheckUserClass)
                 .child(AdminCheckUserNumber).child(Prevalent.DateFoodStore.getDate()), OrderList.class).build();
 
         FirebaseRecyclerAdapter<OrderList, OrderListViewHolder> adapter = new FirebaseRecyclerAdapter<OrderList, OrderListViewHolder>(options) {

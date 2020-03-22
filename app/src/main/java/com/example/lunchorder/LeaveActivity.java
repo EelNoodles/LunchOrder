@@ -122,6 +122,7 @@ public class LeaveActivity extends AppCompatActivity {
 
                 final String SLeaveDate = LeaveDate.getText().toString();
                 final String SLeaveResult = LeaveRessult.getText().toString();
+                final String UserClass = Prevalent.RightOnlineUser.getUserClass();
 
                 if(TextUtils.isEmpty(SLeaveDate) || TextUtils.isEmpty(SLeaveResult)){
 
@@ -130,8 +131,8 @@ public class LeaveActivity extends AppCompatActivity {
                 }else{
 
                     final DatabaseReference UserRef,LeaveRef;
-                    UserRef = FirebaseDatabase.getInstance().getReference().child("LeaveList");
-                    LeaveRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(SLeaveDate);
+                    UserRef = FirebaseDatabase.getInstance().getReference().child("LeaveList").child(UserClass);
+                    LeaveRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(UserClass).child(SLeaveDate);
 
                     LeaveRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -169,7 +170,7 @@ public class LeaveActivity extends AppCompatActivity {
                                             LeaveMap.put("LeaveResult", SLeaveResult);
                                             LeaveMap.put("Status", "✚  晚到。");
 
-                                            RootRef.child("Leave").child(SLeaveDate).child(Prevalent.RightOnlineUser.getNumber()).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            RootRef.child("Leave").child(UserClass).child(SLeaveDate).child(Prevalent.RightOnlineUser.getNumber()).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
 
@@ -207,7 +208,7 @@ public class LeaveActivity extends AppCompatActivity {
                                             LeaveMap.put("LeaveResult", SLeaveResult);
                                             LeaveMap.put("Status", "▲  請假。");
 
-                                            RootRef.child("Leave").child(SLeaveDate).child(Prevalent.RightOnlineUser.getNumber()).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            RootRef.child("Leave").child(UserClass).child(SLeaveDate).child(Prevalent.RightOnlineUser.getNumber()).updateChildren(LeaveMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
 
@@ -280,6 +281,7 @@ public class LeaveActivity extends AppCompatActivity {
                         } else {
 
                             final String SLeaveDate = LeaveDate.getText().toString();
+                            final String UserClass = Prevalent.RightOnlineUser.getUserClass();
 
                             Toast.makeText(LeaveActivity.this, "成功製作點名列表，請重新提交。", Toast.LENGTH_SHORT).show();
 
@@ -287,7 +289,7 @@ public class LeaveActivity extends AppCompatActivity {
                             LastUpdateTime.put("LastUpdateTime", "null");
 
                             final DatabaseReference LastUpdateTimeRef;
-                            LastUpdateTimeRef = FirebaseDatabase.getInstance().getReference().child("Leave").child("LastUpdateTime").child(SLeaveDate);
+                            LastUpdateTimeRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(UserClass).child("LastUpdateTime").child(SLeaveDate);
 
                             LastUpdateTimeRef.updateChildren(LastUpdateTime);
 

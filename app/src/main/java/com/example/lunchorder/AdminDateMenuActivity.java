@@ -34,6 +34,8 @@ public class AdminDateMenuActivity extends AppCompatActivity {
     private Button AdminSendMenu;
     private ProgressDialog loadingBar;
 
+    private String AdminClass = Paper.book().read("AdminClass").toString();
+
     public AdminDateMenuActivity() {
     }
 
@@ -74,7 +76,7 @@ public class AdminDateMenuActivity extends AppCompatActivity {
                         userdataMap.put("DrinkStore", ADSS);
                         userdataMap.put("FoodStore", AFSS);
 
-                        RootRef.child("DateStore").child(ED).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        RootRef.child("DateStore").child(AdminClass).child(ED).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 

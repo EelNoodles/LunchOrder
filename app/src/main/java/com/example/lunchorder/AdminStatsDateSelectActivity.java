@@ -31,6 +31,8 @@ public class AdminStatsDateSelectActivity extends AppCompatActivity {
     private EditText AdminEditDate;
     private Button AdminSelectButton, AdminLogoutButton;
 
+    private String AdminClass = Paper.book().read("AdminClass").toString();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +65,9 @@ public class AdminStatsDateSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Paper.book().destroy();
+                Toast.makeText(AdminStatsDateSelectActivity.this, "成功離開。", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(AdminStatsDateSelectActivity.this, "成功登出。", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(AdminStatsDateSelectActivity.this, MainActivity.class);
+                Intent intent = new Intent(AdminStatsDateSelectActivity.this, AdminSelectActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
@@ -101,12 +101,20 @@ public class AdminStatsDateSelectActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                FoodStore dateStore = dataSnapshot.child("DateStore").child(UserDateSclect).getValue(FoodStore.class);
+                if(!(dataSnapshot.child("DateStore").child(AdminClass).child(UserDateSclect).exists())) {
+
+                    Toast.makeText(AdminStatsDateSelectActivity.this, "此日期菜單尚未建立", Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    FoodStore dateStore = dataSnapshot.child("DateStore").child(AdminClass).child(UserDateSclect).getValue(FoodStore.class);
 
                     Prevalent.DateFoodStore = dateStore;
 
                     Intent intent = new Intent(AdminStatsDateSelectActivity.this, AdminStatsLobby.class);
                     startActivity(intent);
+
+                }
 
             }
 

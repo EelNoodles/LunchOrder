@@ -16,12 +16,45 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/registernameText"
+        android:id="@+id/registerclassText"
         android:layout_width="300dp"
         android:layout_height="25dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/comlogo"
+        android:layout_centerHorizontal="true"
+        android:text="班級："
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />/>
+
+    <EditText
+        android:id="@+id/registerclass"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/registerclassText"
+        android:layout_centerHorizontal="true"
+        android:hint="請輸入您的班級"
+        android:inputType="text"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/registernameText"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/registerclass"
         android:layout_centerHorizontal="true"
         android:text="帳號："
         android:textColor="@color/colorWhite"

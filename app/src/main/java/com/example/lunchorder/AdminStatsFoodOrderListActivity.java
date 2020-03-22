@@ -33,6 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
+import io.paperdb.Paper;
+
 public class AdminStatsFoodOrderListActivity extends AppCompatActivity {
 
     private TextView AdminStatsFoodOrderListTitle, AdminStatsFoodOrderListPrice;
@@ -42,6 +44,8 @@ public class AdminStatsFoodOrderListActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private int totalprice = 0;
     private int totalamount = 0;
+
+    private String AdminClass = Paper.book().read("AdminClass").toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class AdminStatsFoodOrderListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
 
-        AdminStatsFoodOrderListTitle.setText("午餐訂餐總表" + " ( " + Prevalent.DateFoodStore.getDate() + " )");
+        AdminStatsFoodOrderListTitle.setText(AdminClass + " 午餐訂餐總表" + " ( " + Prevalent.DateFoodStore.getDate() + " )");
 
         AdminStatsFoodOrderListBackImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +81,7 @@ public class AdminStatsFoodOrderListActivity extends AppCompatActivity {
         final DatabaseReference orderlistRef = FirebaseDatabase.getInstance().getReference().child("OrderList");
 
 
-        FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("Admin View")
+        FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("Admin View").child(AdminClass)
                 .child(Prevalent.DateFoodStore.getDate()).child("Food"), OrderList.class).build();
 
         FirebaseRecyclerAdapter<OrderList, AdminStatsOrderListViewHolder> adapter = new FirebaseRecyclerAdapter<OrderList, AdminStatsOrderListViewHolder>(options) {

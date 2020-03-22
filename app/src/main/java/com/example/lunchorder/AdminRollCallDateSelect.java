@@ -21,10 +21,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import io.paperdb.Paper;
+
 public class AdminRollCallDateSelect extends AppCompatActivity {
 
     private EditText adminrollcallDateSelectEditText;
     private Button adminrollcallUserSelectDateButton, adminrollcallUserSelectDateLogoutButton;
+
+    private String AdminClass = Paper.book().read("AdminClass").toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +56,8 @@ public class AdminRollCallDateSelect extends AppCompatActivity {
                 String Date = adminrollcallDateSelectEditText.getText().toString();
 
                 final DatabaseReference UserRef,LeaveRef;
-                UserRef = FirebaseDatabase.getInstance().getReference().child("LeaveList");
-                LeaveRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(Date);
+                UserRef = FirebaseDatabase.getInstance().getReference().child("LeaveList").child(AdminClass);
+                LeaveRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(AdminClass).child(Date);
 
                 LeaveRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -125,7 +129,7 @@ public class AdminRollCallDateSelect extends AppCompatActivity {
                             LastUpdateTime.put("LastUpdateTime", "null");
 
                             final DatabaseReference LastUpdateTimeRef;
-                            LastUpdateTimeRef = FirebaseDatabase.getInstance().getReference().child("Leave").child("LastUpdateTime").child(Date);
+                            LastUpdateTimeRef = FirebaseDatabase.getInstance().getReference().child("Leave").child(AdminClass).child("LastUpdateTime").child(Date);
 
                             LastUpdateTimeRef.updateChildren(LastUpdateTime);
 

@@ -2,16 +2,25 @@ package com.example.lunchorder.Model;
 
 public class Users {
 
-    private String Name, Number, TotalPrice;
+    private String UserClass, Name, Number, TotalPrice;
 
     public Users(){
 
     }
 
-    public Users(String name, String number, String totalPrice) {
+    public Users(String userClass, String name, String number, String totalPrice) {
+        UserClass = userClass;
         Name = name;
         Number = number;
         TotalPrice = totalPrice;
+    }
+
+    public String getUserClass() {
+        return UserClass;
+    }
+
+    public void setUserClass(String userClass) {
+        UserClass = userClass;
     }
 
     public String getName() {
@@ -19,7 +28,7 @@ public class Users {
     }
 
     public void setName(String name) {
-        this.Name = name;
+        Name = name;
     }
 
     public String getNumber() {
@@ -27,7 +36,7 @@ public class Users {
     }
 
     public void setNumber(String number) {
-        this.Number = number;
+        Number = number;
     }
 
     public String getTotalPrice() {

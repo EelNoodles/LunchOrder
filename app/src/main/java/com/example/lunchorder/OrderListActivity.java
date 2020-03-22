@@ -80,11 +80,11 @@ public class OrderListActivity extends AppCompatActivity {
 
         final DatabaseReference orderlistRef = FirebaseDatabase.getInstance().getReference().child("OrderList");
 
-        final DatabaseReference totalpriceRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        final DatabaseReference totalpriceRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.RightOnlineUser.getUserClass());
 
         totalpriceRef.child(Prevalent.DateFoodStore.getDate()).child(Prevalent.RightOnlineUser.getNumber()).removeValue();
 
-        FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("User View")
+        FirebaseRecyclerOptions<OrderList> options = new FirebaseRecyclerOptions.Builder<OrderList>().setQuery(orderlistRef.child("User View").child(Prevalent.RightOnlineUser.getUserClass())
                 .child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()), OrderList.class).build();
 
         FirebaseRecyclerAdapter<OrderList, OrderListViewHolder> adapter = new FirebaseRecyclerAdapter<OrderList, OrderListViewHolder>(options) {
@@ -116,6 +116,7 @@ public class OrderListActivity extends AppCompatActivity {
 
                 final HashMap<String, Object> TotalPrice = new HashMap<>();
 
+                TotalPrice.put("UserClass", Prevalent.RightOnlineUser.getUserClass());
                 TotalPrice.put("Name", Prevalent.RightOnlineUser.getName());
                 TotalPrice.put("Number", Prevalent.RightOnlineUser.getNumber());
                 TotalPrice.put("TotalPrice", StringTotalPrice);
@@ -145,14 +146,14 @@ public class OrderListActivity extends AppCompatActivity {
 
                                         if(i == 0){
 
-                                            Food foodtype = dataSnapshot.child("User View").child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()).child(orderList.getFood()).getValue(Food.class);
+                                            Food foodtype = dataSnapshot.child("User View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()).child(orderList.getFood()).getValue(Food.class);
 
                                             if(foodtype == null){
 
-                                                final Food drinkdateTotalAmount = dataSnapshot.child("Admin View").child(Prevalent.DateFoodStore.getDate()).child("Drink").child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).getValue(Food.class);
+                                                final Food drinkdateTotalAmount = dataSnapshot.child("Admin View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.DateFoodStore.getDate()).child("Drink").child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).getValue(Food.class);
                                                 final String stringdrinkdateTotalAmount = drinkdateTotalAmount.getTotalAmount();
 
-                                                orderlistRef.child("User View").child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()).child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                orderlistRef.child("User View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()).child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
 
@@ -165,11 +166,11 @@ public class OrderListActivity extends AppCompatActivity {
 
                                                             adminorderlistMap.put("TotalAmount", stringaftertotalamount);
 
-                                                            orderlistRef.child("Admin View").child(Prevalent.DateFoodStore.getDate()).child("Drink").child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).updateChildren(adminorderlistMap);
+                                                            orderlistRef.child("Admin View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.DateFoodStore.getDate()).child("Drink").child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).updateChildren(adminorderlistMap);
 
                                                             if(stringaftertotalamount.equals("0")){
 
-                                                                orderlistRef.child("Admin View").child(Prevalent.DateFoodStore.getDate()).child("Drink").child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).removeValue();
+                                                                orderlistRef.child("Admin View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.DateFoodStore.getDate()).child("Drink").child(orderList.getIce() + orderList.getSweet() + orderList.getFood()).removeValue();
 
                                                             }
 
@@ -185,10 +186,10 @@ public class OrderListActivity extends AppCompatActivity {
 
                                             }else{
 
-                                                final Food fooddateTotalAmount = dataSnapshot.child("Admin View").child(Prevalent.DateFoodStore.getDate()).child("Food").child(orderList.getFood()).getValue(Food.class);
+                                                final Food fooddateTotalAmount = dataSnapshot.child("Admin View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.DateFoodStore.getDate()).child("Food").child(orderList.getFood()).getValue(Food.class);
                                                 final String stringfooddateTotalAmount = fooddateTotalAmount.getTotalAmount();
 
-                                                orderlistRef.child("User View").child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()).child(orderList.getFood()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                orderlistRef.child("User View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.RightOnlineUser.getNumber()).child(Prevalent.DateFoodStore.getDate()).child(orderList.getFood()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
 
@@ -201,11 +202,11 @@ public class OrderListActivity extends AppCompatActivity {
 
                                                             adminorderlistMap.put("TotalAmount", stringaftertotalamount);
 
-                                                            orderlistRef.child("Admin View").child(Prevalent.DateFoodStore.getDate()).child("Food").child(orderList.getFood()).updateChildren(adminorderlistMap);
+                                                            orderlistRef.child("Admin View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.DateFoodStore.getDate()).child("Food").child(orderList.getFood()).updateChildren(adminorderlistMap);
 
                                                             if(stringaftertotalamount.equals("0")){
 
-                                                                orderlistRef.child("Admin View").child(Prevalent.DateFoodStore.getDate()).child("Food").child(orderList.getFood()).removeValue();
+                                                                orderlistRef.child("Admin View").child(Prevalent.RightOnlineUser.getUserClass()).child(Prevalent.DateFoodStore.getDate()).child("Food").child(orderList.getFood()).removeValue();
 
                                                             }
 

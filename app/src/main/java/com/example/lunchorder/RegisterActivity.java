@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button RegisterButton;
-    private EditText InputName, InputNumber;
+    private EditText InputName, InputNumber,InputClass;
     private ProgressDialog loadingBar;
 
     @Override
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterButton = (Button) findViewById(R.id.registerbutton);
         InputName = (EditText) findViewById(R.id.registername);
         InputNumber = (EditText) findViewById(R.id.registernumber);
+        InputClass = (EditText) findViewById(R.id.registerclass);
         loadingBar = new ProgressDialog(this);
 
 
@@ -53,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void CreateAccount(){
         String Name = InputName.getText().toString();
         String Number = InputNumber.getText().toString();
+        String UserClass = InputClass.getText().toString();
 
         if (TextUtils.isEmpty(Name)){
 
@@ -62,16 +64,20 @@ public class RegisterActivity extends AppCompatActivity {
 
             Toast.makeText(this, "請輸入座號。", Toast.LENGTH_LONG).show();
 
+        }else if (TextUtils.isEmpty(UserClass)){
+
+            Toast.makeText(this, "請輸入班級。", Toast.LENGTH_LONG).show();
+
         }else{
             loadingBar.setTitle("正在創立帳號...");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            ValidNameNumber(Name, Number);
+            ValidNameNumber(Name, Number, UserClass);
         }
     }
 
-    private void ValidNameNumber(final String Name, final String Number){
+    private void ValidNameNumber(final String Name, final String Number, final String UserClass){
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -79,17 +85,20 @@ public class RegisterActivity extends AppCompatActivity {
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!(dataSnapshot.child("Users").child(Number).exists())){
+                if(!(dataSnapshot.child("Users").child(UserClass).child(Number).exists())){
 
-                    HashMap<String, Object> userdataMap = new HashMap<>();
+                    final HashMap<String, Object> userdataMap = new HashMap<>();
+                    userdataMap.put("UserClass", UserClass);
                     userdataMap.put("Number", Number);
                     userdataMap.put("Name", Name);
 
-                    RootRef.child("Users").child(Number).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Users").child(UserClass).child(Number).updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()){
+
+                                RootRef.child("LeaveList").child(UserClass).child(Number).updateChildren(userdataMap);
 
                                 Toast.makeText(RegisterActivity.this, "您的帳號已經成功註冊。", Toast.LENGTH_LONG).show();
                                 loadingBar.dismiss();

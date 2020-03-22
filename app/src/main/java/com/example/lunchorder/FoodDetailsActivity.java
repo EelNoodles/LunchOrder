@@ -66,6 +66,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
     private void addtoorderlist() {
 
         final String UserNumber = Prevalent.RightOnlineUser.getNumber();
+        final String UserClass = Prevalent.RightOnlineUser.getUserClass();
         final String Date = Prevalent.DateFoodStore.getDate();
         final String FoodName = FoodDetailsName.getText().toString();
         final String amount = amountbutton.getNumber();
@@ -76,10 +77,10 @@ public class FoodDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.child("User View").child(UserNumber).child(Date).child(FoodName).exists()) {
+                if (dataSnapshot.child("User View").child(UserClass).child(UserNumber).child(Date).child(FoodName).exists()) {
 
-                    Food dateTotalAmount = dataSnapshot.child("Admin View").child(Date).child("Food").child(FoodName).getValue(Food.class);
-                    Food dateAmount = dataSnapshot.child("User View").child(UserNumber).child(Date).child(FoodName).getValue(Food.class);
+                    Food dateTotalAmount = dataSnapshot.child("Admin View").child(UserClass).child(Date).child("Food").child(FoodName).getValue(Food.class);
+                    Food dateAmount = dataSnapshot.child("User View").child(UserClass).child(UserNumber).child(Date).child(FoodName).getValue(Food.class);
                     final String stringdateTotalAmount = dateTotalAmount.getTotalAmount();
                     final String stringdateAmount = dateAmount.getAmount();
 
@@ -101,11 +102,11 @@ public class FoodDetailsActivity extends AppCompatActivity {
                     adminorderlistMap.put("Price", FoodDetailsPrice.getText().toString());
                     adminorderlistMap.put("TotalAmount", stringtotalamount);
 
-                    orderlistRef.child("User View").child(UserNumber).child(Date).child(FoodName).updateChildren(orderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    orderlistRef.child("User View").child(UserClass).child(UserNumber).child(Date).child(FoodName).updateChildren(orderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            orderlistRef.child("Admin View").child(Date).child("Food").child(FoodName).updateChildren(adminorderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            orderlistRef.child("Admin View").child(UserClass).child(Date).child("Food").child(FoodName).updateChildren(adminorderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
@@ -121,9 +122,9 @@ public class FoodDetailsActivity extends AppCompatActivity {
 
                 }else{
 
-                    if(dataSnapshot.child("Admin View").child(Date).child("Food").child(FoodName).exists()){
+                    if(dataSnapshot.child("Admin View").child(UserClass).child(Date).child("Food").child(FoodName).exists()){
 
-                        Food dateTotalAmount = dataSnapshot.child("Admin View").child(Date).child("Food").child(FoodName).getValue(Food.class);
+                        Food dateTotalAmount = dataSnapshot.child("Admin View").child(UserClass).child(Date).child("Food").child(FoodName).getValue(Food.class);
                         final String stringdateTotalAmount = dateTotalAmount.getTotalAmount();
                         int totalamount = ((Integer.valueOf(stringdateTotalAmount))) + ((Integer.valueOf(amount)));
 
@@ -142,11 +143,11 @@ public class FoodDetailsActivity extends AppCompatActivity {
                         adminorderlistMap.put("Price", FoodDetailsPrice.getText().toString());
                         adminorderlistMap.put("TotalAmount", stringtotalamount);
 
-                        orderlistRef.child("User View").child(UserNumber).child(Date).child(FoodName).updateChildren(orderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        orderlistRef.child("User View").child(UserClass).child(UserNumber).child(Date).child(FoodName).updateChildren(orderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
-                                orderlistRef.child("Admin View").child(Date).child("Food").child(FoodName).updateChildren(adminorderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                orderlistRef.child("Admin View").child(UserClass).child(Date).child("Food").child(FoodName).updateChildren(adminorderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
@@ -177,11 +178,11 @@ public class FoodDetailsActivity extends AppCompatActivity {
                         adminorderlistMap.put("Price", FoodDetailsPrice.getText().toString());
                         adminorderlistMap.put("TotalAmount", stringtotalamount);
 
-                        orderlistRef.child("User View").child(UserNumber).child(Date).child(FoodName).updateChildren(orderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        orderlistRef.child("User View").child(UserClass).child(UserNumber).child(Date).child(FoodName).updateChildren(orderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
-                                orderlistRef.child("Admin View").child(Date).child("Food").child(FoodName).updateChildren(adminorderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                orderlistRef.child("Admin View").child(UserClass).child(Date).child("Food").child(FoodName).updateChildren(adminorderlistMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
